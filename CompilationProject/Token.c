@@ -16,6 +16,13 @@ int writeIndex = 0;
 int readIndex = 0;
 Node* currentNode = NULL;
 
+void restartTokenizer() {
+
+	writeIndex = 0;
+	readIndex = 0;
+	currentNode = NULL;
+}
+
 
 #define TOKEN_ARRAY_SIZE 1000
 
@@ -72,7 +79,15 @@ void create_and_store_token(eTOKENS kind, char* lexeme, int numOfLine)
 			}
 			currentNode->next = NULL;
 		}
-		else writeIndex++;
+		else {
+			writeIndex++;
+			
+		}
+
+
+		if (readIndex == TOKEN_ARRAY_SIZE - 1) readIndex = 0;
+
+		else readIndex++;
 	}
 
 	currentNode->tokensArray[writeIndex].kind = kind;
@@ -92,12 +107,18 @@ void create_and_store_token(eTOKENS kind, char* lexeme, int numOfLine)
 */
 Token* back_token() {
 	
-	if (readIndex == 0) {
+	if (readIndex <= 0) {
 		// If we hit a new node than return the last token of the previous node
-		if (currentNode->prev != NULL) return &currentNode->prev->tokensArray[TOKEN_ARRAY_SIZE - 1];
+		if (currentNode->prev != NULL) {
+			readIndex = TOKEN_ARRAY_SIZE - 1;
+			return &currentNode->prev->tokensArray[TOKEN_ARRAY_SIZE - 1];
+		}
 		// Else we are on the first node on index 0(no previous token available)
-		else return&currentNode->tokensArray[readIndex];
-
+		else {
+			
+			readIndex--;
+			return &currentNode->tokensArray[0];
+		}
 	}	
 	return &currentNode->tokensArray[--readIndex];
 }
@@ -112,12 +133,7 @@ Token* back_token() {
 Token* next_token() {
 
 	yylex();
-	if (readIndex == TOKEN_ARRAY_SIZE - 1) {
-
-		readIndex = 0;
-		return &currentNode->tokensArray[TOKEN_ARRAY_SIZE - 1];
-	}
-	return &currentNode->tokensArray[readIndex++];
+	return &currentNode->tokensArray[readIndex];
 }
 
 

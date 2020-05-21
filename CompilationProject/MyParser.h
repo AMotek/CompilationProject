@@ -20,25 +20,22 @@ void parse_program();
 
 void parse_global_vars();
 
-void parse_func_predefs();
 
 void parse_func_full_defs();
 
+void parse_func_full_defs_tag();
+
 void parse_global_vars_tag();
 
-void parse_var_dec();
+void parse_var_dec(int);
 
-void parse_var_dec_tag();
+void parse_var_dec_tag(int);
 
 void parse_type();
 
 void parse_dim_sizes();
 
 void parse_dim_sizes_tag();
-
-void parse_func_predefs();
-
-void parse_func_predefs_tag();
 
 void parse_func_prototype();
 
