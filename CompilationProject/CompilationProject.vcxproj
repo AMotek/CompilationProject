@@ -148,6 +148,12 @@
     <ClCompile Include="Token.c" />
     <ClCompile Include="win.lex.yy.c" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\Desktop\מדמח-HIT\שנה ג%27\סמסטר ב%27\קומפילציה\project\information.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\מדמח-HIT\שנה ג%27\סמסטר ב%27\קומפילציה\win_flex_bison-latest\project1.lex" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

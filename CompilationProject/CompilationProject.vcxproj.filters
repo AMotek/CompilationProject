@@ -39,4 +39,14 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\Desktop\מדמח-HIT\שנה ג%27\סמסטר ב%27\קומפילציה\project\information.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\מדמח-HIT\שנה ג%27\סמסטר ב%27\קומפילציה\win_flex_bison-latest\project1.lex">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

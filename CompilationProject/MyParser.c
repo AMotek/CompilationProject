@@ -60,7 +60,7 @@ void parse_program() {
 			if (counter > 0); // if counter is greater than zero and we meet open curly than it start func full predefs correctly. do nothing...
 
 			else {
-				// If counter is zero and we meet token open curly than missing functions predefs
+				// If counter is zero and we meet token open curly than it means missing functions predefs
 				//fprintf(log_file, "Missing functions predefinitions....\n");
 				currToken = back_token();
 				match(TOKEN_SEMICOLON);
@@ -92,7 +92,7 @@ void parse_program() {
 	}
 	else {
 		fprintf(log_file, "Expected token of type '{TOKEN_OPEN_CURLY}', at line : {%d}. ", currToken->lineNumber);
-		fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind, currToken->lexeme));
+		fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind), currToken->lexeme);
 		while (currToken->kind != TOKEN_EOF) currToken = next_token();
 		
 		currToken = back_token();
@@ -543,7 +543,7 @@ void parse_condition() {
 
 	default:
 		fprintf(log_file, "Expected token of type 'rel_op', at line : {%d}. ", currToken->lineNumber);
-		fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind, currToken->lexeme));
+		fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind), currToken->lexeme);
 		break;
 	}
 
@@ -791,7 +791,7 @@ void parse_var_dec_tag(int isFirstGlobalVar) {
 		if (isFirstGlobalVar) {
 			// If we meet open parenthese before the first global var was found than its an error(global var is not nullable!). so perform error recory
 			fprintf(log_file, "Expected token of type '{TOKEN_SEMICOLON or TOKEN_OPEN_BRACKETS}', at line : {%d}. ", currToken->lineNumber);
-			fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind, currToken->lexeme));
+			fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind), currToken->lexeme);
 			currToken = back_token();
 			errorRecovery(varDecTagFollow, 7);
 		}
@@ -801,7 +801,7 @@ void parse_var_dec_tag(int isFirstGlobalVar) {
 
 	default:
 		fprintf(log_file, "Expected token of type '{TOKEN_SEMICOLON or TOKEN_OPEN_BRACKETS}', at line : {%d}. ", currToken->lineNumber);
-		fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind, currToken->lexeme));
+		fprintf(log_file, "Actual token of type '{%s}', lexeme : {%s}\n", tokenEnumToString(currToken->kind), currToken->lexeme);
 		currToken = back_token();
 		errorRecovery(varDecTagFollow, 7);
 		break;
