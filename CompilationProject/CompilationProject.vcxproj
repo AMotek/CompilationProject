@@ -138,13 +138,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ErrorMessageCenter.h" />
     <ClInclude Include="FlexLexer.h" />
     <ClInclude Include="Follow.h" />
     <ClInclude Include="MyParser.h" />
+    <ClInclude Include="SymbolTable.h" />
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyParser.c" />
+    <ClCompile Include="SymbolTable.c" />
+    <ClCompile Include="TestSymbolTable.c" />
     <ClCompile Include="Token.c" />
     <ClCompile Include="win.lex.yy.c" />
   </ItemGroup>

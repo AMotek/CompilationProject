@@ -2,6 +2,7 @@
 #include "Token.h"
 
 
+
 /* This package describes the storage of tokens identified in the input text.
 * The storage is a bi-directional list of nodes.
 * Each node is an array of tokens; the size of this array is defined as TOKEN_ARRAY_SIZE.
@@ -29,7 +30,7 @@ void restartTokenizer() {
 /*
 * This function creates a token and stores it in the storage.
 */
-void create_and_store_token(eTOKENS kind, char* lexeme, int numOfLine)
+void create_and_store_token(TOKEN_TYPE kind, char* lexeme, int numOfLine)
 {
 	int length = strlen(lexeme) + 1;
 
@@ -137,7 +138,7 @@ Token* next_token() {
 }
 
 
-char* tokenEnumToString(eTOKENS tokenType) {
+const char* tokenEnumToString(TOKEN_TYPE tokenType) {
 
 	switch (tokenType) {
 
@@ -180,14 +181,8 @@ char* tokenEnumToString(eTOKENS tokenType) {
 	case TOKEN_ID:
 		return "TOKEN_ID";
 
-	case TOKEN_FLOAT_NUM:
-		return "TOKEN_FLOAT_NUM";
-
 	case TOKEN_COMP:
 		return "TOKEN_COMP";
-
-	case TOKEN_INT_NUM:
-		return "TOKEN_INT_NUM";
 
 	case TOKEN_FLOAT:
 		return "TOKEN_FLOAT";
@@ -227,5 +222,9 @@ char* tokenEnumToString(eTOKENS tokenType) {
 
 	case TOKEN_EOF:
 		return "TOKEN_EOF";
+
+	case TOKEN_ERROR:
+		return "TOKEN_ERROR";
 	}
+
 }

@@ -8,7 +8,7 @@
 
 extern FILE* yyin, * yyout;
 
-typedef enum eTOKENS
+typedef enum TOKEN_TYPE
 {
 	TOKEN_INT,
 	TOKEN_IF,
@@ -23,9 +23,7 @@ typedef enum eTOKENS
 	TOKEN_OP_LESS_EQ,
 	TOKEN_OP_INEQUAL,
 	TOKEN_ID,
-	TOKEN_FLOAT_NUM,
 	TOKEN_COMP,
-	TOKEN_INT_NUM,
 	TOKEN_FLOAT,
 	TOKEN_VOID,
 	TOKEN_RETURN,
@@ -38,21 +36,13 @@ typedef enum eTOKENS
 	TOKEN_CLOSE_BRACKETS,
 	TOKEN_OPEN_CURLY,
 	TOKEN_CLOSE_CURLY,
-	TOKEN_EOF
-
-	/*
-		Examples of tokens, add/change according to your needs.
-
-		Alternative way to define tokens:
-		#define TOKEN_INTEGER 1
-		#define TOKEN_IF 2
-		...........
-	*/
-}eTOKENS;
+	TOKEN_EOF,
+	TOKEN_ERROR
+}TOKEN_TYPE;
 
 typedef struct Token
 {
-	eTOKENS kind;
+	TOKEN_TYPE kind;
 	char* lexeme;
 	int lineNumber;
 }Token;
@@ -64,8 +54,8 @@ typedef struct Node
 	struct Node* next;
 } Node;
 
-char* tokenEnumToString(eTOKENS tokenType);
-void create_and_store_token(eTOKENS kind, char* lexeme, int numOfLine);
+const char* tokenEnumToString(TOKEN_TYPE tokenType);
+void create_and_store_token(TOKEN_TYPE kind, char* lexeme, int numOfLine);
 Token* next_token();
 Token* back_token();
 void restartTokenizer();

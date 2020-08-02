@@ -1,98 +1,147 @@
 #ifndef MY_PARSER_H
 #define MY_PARSER_H
 
+
 #include "Token.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "SymbolTable.h"
 
-static FILE* log_file = NULL;
+static FILE* log_file_syntactic = NULL;
+
+static FILE* log_file_semantic = NULL;
 
 static Token* currToken = NULL;
 
+static Table* currTable;
+
+static Table* mainTable;
+
+static char* currFullFuncName;
+
 void startParsing(int);
 
-void match(eTOKENS token);
+void match(TOKEN_TYPE token);
 
-void errorRecovery(eTOKENS follow[], int size);
+void errorRecovery(TOKEN_TYPE follow[], int size);
 
-void parse_program();
+void parseProgram();
 
-void parse_global_vars();
+void parseGlobalVars();
 
+void parseFuncFullDefs();
 
-void parse_func_full_defs();
+void parseFuncFullDefsTag();
 
-void parse_func_full_defs_tag();
+void parseGlobalVarsTag();
 
-void parse_global_vars_tag();
+void parseVarDec();
 
-void parse_var_dec(int);
+void parseVarDecTag(TableEntry*);
 
-void parse_var_dec_tag(int);
+TOKEN_TYPE parseType();
 
-void parse_type();
+void parseDimSizes(TableEntry*);
 
-void parse_dim_sizes();
+void parseDimSizesTag(TableEntry*);
 
-void parse_dim_sizes_tag();
+TableEntry* parseFuncPrototype();
 
-void parse_func_prototype();
+void parseFuncWithBody();
 
-void parse_func_with_body();
+TOKEN_TYPE pasreReturnedType();
 
-void parse_returned_type();
+TableEntry* parseParams();
 
-void parse_params();
+TableEntry* parseParamsList();
 
-void parse_param_list();
+void parseParamListTag(TableEntry*);
 
-void parse_param_list_tag();
+TableEntry* parseParam();
 
-void parse_param();
+void parseParamTag(TableEntry*);
 
-void parse_param_tag();
+void parseCompStmt(Role role);
 
-void parse_comp_stmt();
+void parseVarDecList();
 
-void parse_var_dec_list();
+void parseVarDecListTag();
 
-void parse_var_dec_list_tag();
+void parseStmtList();
 
-void parse_stmt_list();
+void parseStmtListTag();
 
-void parse_stmt_list_tag();
+void parseStmt();
 
-void parse_stmt();
+void parseStmtTag();
 
-void parse_stmt_tag();
+ValueType* parseArgs();
 
-void parse_args();
+ValueType* parseArgsList();
 
-void parse_arg_list();
+void parseArgsListTag(ValueType*);
 
-void parse_arg_list_tag();
+void parseReturnStmt();
 
-void parse_return_stmt();
+void parseReturnStmtTag();
 
-void parse_return_stmt_tag();
+ValueType* parseExprList();
 
-void parse_expr_list();
+void parseExprListTag(ValueType*);
 
-void parse_expr_list_tag();
+void parseCondition();
 
-void parse_condition();
+ValueType* parseExpr();
 
-void parse_expr();
+ValueType* parseExprTag();
 
-void parse_expr_tag();
+ValueType* parseTerm();
 
-void parse_term();
+ValueType* parseTermTag();
 
-void parse_term_tag();
+ValueType* parseFactor();
 
-void parse_factor();
+TOKEN_TYPE parseFactorTag();
 
-void parse_factor_tag();
+void print_already_declared_name(Token);
+
+void createParametrsTable(TableEntry*);
+
+void checkMatchingSignature(TableEntry*, TableEntry*);
+
+void checkMatchingReturnType(TOKEN_TYPE, TOKEN_TYPE);
+
+void checkAllVariablesWereUsed();
+
+TOKEN_TYPE getExpressionType(TOKEN_TYPE, TOKEN_TYPE);
+
+void checkFunctionArgumentCall(ValueType*, TableEntry*, int);
+
+void addFuncEntry(TableEntry*, Table*);
+
+void checkArrayAccess(ValueType*, TableEntry*, int);
+
+void onCloseCurly();
+
+void checkReturnStatement();
+
+void checkValidId(TableEntry*, int, char*);
+
+void checkIdAssigment(TOKEN_TYPE, TableEntry*, int);
+
+void checkArrayElemAssignment(TOKEN_TYPE, TableEntry*, int);
+
+void validateIDWasNotDeclared(TableEntry*, TableEntry*, char*, int);
+
+TOKEN_TYPE getLookAhead(int);
+
+void performLexicalGoBack(int);
+
+void onCloseMainTable();
+
+void checkRemaningPredef();
+
+void checkReturnValue(TableEntry*);
+
 
 #endif

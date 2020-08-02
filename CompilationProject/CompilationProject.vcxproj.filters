@@ -27,15 +27,27 @@
     <ClInclude Include="Follow.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="SymbolTable.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorMessageCenter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="win.lex.yy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Token.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyParser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="win.lex.yy.c">
+    <ClCompile Include="TestSymbolTable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
